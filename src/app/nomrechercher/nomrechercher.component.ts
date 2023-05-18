@@ -1,8 +1,8 @@
-import { League } from './../model/league.model';
+import { Genre } from './../model/genre.model';
 import { Component, OnInit } from '@angular/core';
-import { Equipe } from '../model/equipe.model';
+import { Game } from '../model/game.model';
 import { AuthService } from '../services/auth.service';
-import { EquipeService } from '../services/equipe.service';
+import { GameService } from '../services/game.service';
 
 @Component({
   selector: 'app-nomrechercher',
@@ -12,39 +12,39 @@ import { EquipeService } from '../services/equipe.service';
 })
 export class NomrechercherComponent implements OnInit {
 
-  equipe!:Equipe[];
+  game!:Game[];
   id! : number;
-  nomequipe!:string;
+  nomgame!:string;
   
-  leagues! : League[];
-  allequipe!:Equipe[];
+  genres! : Genre[];
+  allgame!:Game[];
 
   constructor(public  authService:AuthService,
-   private equipeService:EquipeService) { }
+   private gameService:GameService) { }
 
   ngOnInit(): void {
     
-    this.equipeService.listeEquipe().subscribe(equipe => {
-      console.log(equipe);
-      this.equipe = equipe;
+    this.gameService.listeGame().subscribe(game => {
+      console.log(game);
+      this.game = game;
       });
 
     
-    //this.allequipe=this.equipeService.listeEquipe();
+    //this.allgame=this.gameService.listeGame();
   }
   
  
   onkeyUpp(text:String)
   {
     console.log(text);
-    this.equipe=this.allequipe.filter(item=>item.nomEquipe?.toLowerCase().includes(text.toLowerCase()));
+    this.game=this.allgame.filter(item=>item.nomGame?.toLowerCase().includes(text.toLowerCase()));
 
   }
   onKeyUp(text:string){
-    this.equipeService.rechercherParNom(this.nomequipe).
-    subscribe(equipe => {
-    this.equipe = equipe;
-    console.log(equipe)});
+    this.gameService.rechercherParNom(this.nomgame).
+    subscribe(game => {
+    this.game = game;
+    console.log(game)});
     }
 
 }

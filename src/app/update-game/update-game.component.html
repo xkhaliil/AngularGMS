@@ -1,0 +1,127 @@
+<div class="container">
+    <div class="text-center">
+        <h2>Modifier une jeu :</h2>
+    </div>
+    <form>
+        <div class="row">
+            <div class="col-sm-2 col-md-2 col-lg-2">
+                <div class="form-group" hidden>
+                    <label for="gameId">ID</label>
+                    <input readonly type="text" [(ngModel)]="currentGame.idGame" name="id" class="form-control" id="gameId">
+                </div>
+            </div>
+            <div class="col-sm-4 col-md-4 col-lg-4">
+                <div class="form-group">
+                    <label for="gameName">Nom</label>
+                    <input type="text" [(ngModel)]="currentGame.nomGame" name="nom" class="form-control" id="gameName">
+                </div>
+            </div>
+            <div class="col-sm-4 col-md-4 col-lg-4">
+                <div class="form-group">
+                    <label for="publishDate">Publish date</label>
+                    <input type="date" [ngModel]="currentGame.dateFound | date: 'yyyy-MM-dd'" (ngModelChange)="currentGame.dateFound = $event" name="datematch" class="form-control" id="publishDate">
+                </div>
+            </div>
+            <div class="col-sm-4 col-md-4 col-lg-4">
+                <div class="form-group">
+                    <label for="genres">Genres</label>
+                    <select class="form-control form-control-lg" id="genres" name="idCat" [(ngModel)]="updatedid">
+                        <option *ngFor="let cat of genre" [value]="cat.idLeg">
+                            {{cat.nomGenre}}
+                        </option>
+                    </select>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-12 col-md-12 col-lg-12">
+                <img [src]="myImage" class="img-fluid rounded-start" style="width: 500px; height: 300px">
+            </div>
+            <div class="col-sm-12 col-md-12 col-lg-12">
+                <div class="form-group">
+                    <label class="mb-2">Ajouter image :</label>
+                    <input type="file" (change)="onImageUpload($event)" class="form-control-file" id="gameImage">
+                </div>
+            </div>
+        </div>
+        <div class="text-center mt-2">
+            <button type="submit" (click)="updateGame()" class="btn btn-success">Modifier</button>
+        </div>
+    </form>
+</div>
+<style>
+    .container {
+        max-width: 800px;
+        margin: 0 auto;
+        padding: 20px;
+    }
+
+    h2 {
+        margin-top: 0;
+    }
+
+    .form-group {
+        margin-bottom: 20px;
+    }
+
+    label {
+        font-weight: bold;
+    }
+
+    input[type="text"],
+    input[type="date"],
+    select {
+        width: 100%;
+        padding: 8px;
+        border-radius: 4px;
+        border: 1px solid #ccc;
+    }
+
+    button {
+        padding: 10px 20px;
+        border-radius: 4px;
+        font-weight: bold;
+    }
+
+    .img-fluid {
+        max-width: 100%;
+        height: auto;
+        margin-top: 10px;
+    }
+
+    .text-center {
+        text-align: center;
+    }
+
+    .row::after {
+        content: "";
+        clear: both;
+        display: table;
+    }
+
+    .col-sm-2,
+    .col-sm-4,
+    .col-sm-12 {
+        float: left;
+        width: 100%;
+    }
+
+    @media (min-width: 768px) {
+        .col-md-2,
+        .col-md-4,
+        .col-md-12 {
+            float: left;
+            width: 100%;
+        }
+    }
+
+    @media (min-width: 992px) {
+        .col-lg-2,
+        .col-lg-4,
+        .col-lg-12 {
+            float: left;
+            width: 100%;
+        }
+    }
+
+    </style>

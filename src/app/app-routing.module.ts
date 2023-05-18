@@ -1,25 +1,25 @@
-import { EquipeGuard } from './equipe.guard';
+import { GameGuard } from './game.guard';
 import { Component, NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import {  EquipeComponent } from './equipe/equipe.component';
-import {AddEquipeComponent} from './add-equipe/add-equipe.component'
-import { UpdateEquipeComponent } from './update-equipe/update-equipe.component';
+import {  GameComponent } from './game/game.component';
+import {AddGameComponent} from './add-game/add-game.component'
+import { UpdateGameComponent } from './update-game/update-game.component';
 import { LoginComponent } from './login/login.component';
 import { ForbiddenComponent } from './forbidden/forbidden.component';
-import { RechercheParCategorieComponent } from './recherche-par-categorie/recherche-par-categorie.component';
+import { RechercheParGenreComponent } from './recherche-par-genre/recherche-par-genre.component';
 import { NomrechercherComponent } from './nomrechercher/nomrechercher.component';
-import { ListeLeagueComponent } from './liste-league/liste-league.component';
+import { ListeGenreComponent } from './liste-genre/liste-genre.component';
 
 const routes: Routes = [
-  {path:"equipe",component:EquipeComponent},
-  {path:"add-equipe",component:AddEquipeComponent,canActivate:[EquipeGuard]},
-  {path:"" ,redirectTo:"equipe",pathMatch:"full"},
+  {path:"game",component:GameComponent},
+  {path:"add-game",component:AddGameComponent,canActivate:[GameGuard]},
+  {path:"" ,redirectTo:"game",pathMatch:"full"},
   {path:"login",component:LoginComponent},
   {path: 'app-forbidden', component: ForbiddenComponent},
-  {path:"update-equipe/:id",component:UpdateEquipeComponent,canActivate:[EquipeGuard]},
-  {path:"rechercheParLeague",component:RechercheParCategorieComponent},
+  {path:"update-game/:id",component:UpdateGameComponent,canActivate:[GameGuard]},
+  {path:"rechercheParGenre",component:RechercheParGenreComponent},
   {path:"nomrechercher",component:NomrechercherComponent},
-  {path:"listeLeague",component:ListeLeagueComponent,canActivate:[EquipeGuard]}
+  {path:"listeGenre",component:ListeGenreComponent,canActivate:[GameGuard]}
 
 
   

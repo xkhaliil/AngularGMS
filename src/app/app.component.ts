@@ -8,7 +8,7 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  title = 'equipe';
+  title = 'game';
   sr="assets/bl.png";
   constructor(public authService:AuthService,
     private router:Router){}

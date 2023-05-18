@@ -1,50 +1,126 @@
 <!DOCTYPE html>
-<html >
+<html>
 <head>
-<meta charset="utf-8">
-<title>Gestion des Equipes</title>
+    <meta charset="utf-8">
+    <title>Gestion des Games</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
+    <style>
+        .navbar {
+            background-color: #212121;
+            padding: 10px;
+            animation: fadeInDown 0.5s;
+        }
+
+        .navbar-brand {
+            color: #fff;
+            font-size: 24px;
+            font-weight: bold;
+            text-decoration: none;
+        }
+
+        .navbar-nav {
+            margin: 0;
+            padding: 0;
+            list-style: none;
+        }
+
+        .nav-item {
+            display: inline-block;
+            position: relative;
+        }
+
+        .nav-link {
+            color: #fff;
+            font-size: 16px;
+            padding: 10px;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        .nav-link:hover {
+            color: #FF8C00;
+        }
+
+        .dropdown-menu {
+            display: none;
+            position: absolute;
+            top: 100%;
+            left: 0;
+            min-width: 200px;
+            background-color: #212121;
+            padding: 10px;
+            border-radius: 4px;
+            z-index: 999;
+            animation: fadeInDown 0.5s;
+        }
+
+        .dropdown-item {
+            display: block;
+            color: #fff;
+            font-size: 14px;
+            padding: 8px 10px;
+            text-decoration: none;
+            transition: background-color 0.3s;
+        }
+
+        .dropdown-item:hover {
+            background-color: #FF8C00;
+        }
+
+        .dropdown:hover .dropdown-menu {
+            display: block;
+        }
+
+        @keyframes fadeInDown {
+            0% {
+                opacity: 0;
+                transform: translateY(-10px);
+            }
+            100% {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+    </style>
 </head>
 <body>
 <nav class="navbar navbar-expand-sm bg-dark navbar-dark">
     <img srcset="https://img.icons8.com/quill/512/experimental-football-quill.png 2x" width="60px">
-<!-- Brand -->
+    <!-- Brand -->
 
 
+    <a class="navbar-brand a" href="#"> Gestion des jeux video</a>
+    <!-- Links -->
+    <ul class="navbar-nav">
 
+        <!-- Dropdown -->
+        <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown"
+               *ngIf="authService.isLoggedInn">
+                Plus</a>
+            <div class="dropdown-menu">
+                <a class="dropdown-item" routerLink="/add-game" *ngIf="authService.isAdmin()">Ajouter</a>
+                <a class="dropdown-item" routerLink="/game">Lister</a>
+                <a class="dropdown-item" routerLink="/rechercheParGenre">rechercher par genre</a>
+                <a class="dropdown-item" routerLink="/nomrechercher">rechercher par nom</a>
+                <a class="dropdown-item" routerLink="/listeGenre" *ngIf="authService.isAdmin()">liste des genres</a>
+            </div>
+        </li>
+    </ul>
+    <ul class="navbar-nav ml-auto">
+        <li><a class="nav-link"></a></li>
+        <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown">
+                {{authService.loggedUser}} Profile
+            </a>
 
-<a class="navbar-brand a" href="#" > My LigUe</a>
-<!-- Links -->
-<ul class="navbar-nav">
-<li class="nav-item">
-<a class="nav-link" routerLink="/equipe" *ngIf="authService.isLoggedInn" >liste des match</a>
-</li>
-<!-- Dropdown -->
-<li class="nav-item dropdown">
-<a class="nav-link dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown" *ngIf="authService.isLoggedInn">
-option</a>
-<div class="dropdown-menu">
-<a class="dropdown-item" routerLink="/add-equipe" *ngIf="authService.isAdmin()">Ajouter</a>
-<a class="dropdown-item" routerLink="/equipe">Lister</a>
-<a class="dropdown-item" routerLink="/rechercheParLeague">rechercher par league</a>
-<a class="dropdown-item" routerLink="/nomrechercher">rechercher par nom</a>
-<a class="dropdown-item" routerLink="/listeLeague" *ngIf="authService.isAdmin()">liste des leagues</a>
-</div>
-</li>
-</ul>
-<ul class="navbar-nav ml-auto" >
-    <li> <a class="nav-link"></a></li>
-<li class="nav-item dropdown">
-<a class="nav-link dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown" >
-    {{authService.loggedUser}} connexion 
-</a>
+            <div class="dropdown-menu">
+                <a *ngIf="!authService.isLoggedInn" class="dropdown-item" routerLink="/login">login</a>
+                <a *ngIf="authService.isLoggedInn" class="dropdown-item" (click)="onLogout()">logout</a>
 
-<div class="dropdown-menu">
-<a  *ngIf="!authService.isLoggedInn" class="dropdown-item" routerLink="/login">login</a>
-<a  *ngIf="authService.isLoggedInn"class="dropdown-item" (click) = "onLogout()">logout</a>
-<a   class="dropdown-item" href="#">Profile</a>
-</div>
-</li>
-</ul>
+            </div>
+        </li>
+    </ul>
 
 </nav>
 </body>

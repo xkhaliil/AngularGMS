@@ -1,10 +1,10 @@
 <div class="container">
     <div class="col-sm-4 col-md-4 col-lg-4 mb-4">
-        <label>Leagues : </label>
+        <label>Genres : </label>
         <select class="form-control form-control-lg" id="id" name="id"
         [(ngModel)]="id" (change)="onChange()">
-        <option *ngFor="let cat of leagues" value="{{cat.idLeg}}">
-        {{cat.nomLeague}}
+        <option *ngFor="let cat of genres" value="{{cat.idLeg}}">
+        {{cat.nomGenre}}
         
          </option>
         </select>
@@ -14,16 +14,16 @@
     <div class="card shadow mb-4">
     <div class="card-body">
     <table class="table table-striped">
-    <tr> <th>Id</th><th>Nom-Equipe</th> <th>Date Match</th><th>Legue</th> </tr>
-    <tbody *ngFor="let equipe of equipe">
+    <tr> <th>Id</th><th>Nom-Game</th> <th>Date Match</th><th>Legue</th> </tr>
+    <tbody *ngFor="let game of game">
     <tr >
-    <td>{{equipe.idEquipe}}</td>
-    <td>{{equipe.nomEquipe}}</td>
+    <td>{{game.idGame}}</td>
+    <td>{{game.nomGame}}</td>
     
-    <td>{{equipe.dateFound | date:'dd/MM/yyyy'}}</td>
-    <td>{{equipe.league.nomLeague}}</td>
+    <td>{{game.dateFound | date:'dd/MM/yyyy'}}</td>
+    <td>{{game.genre.nomGenre}}</td>
     <td><a class="btn btn-danger" *ngIf="authService.isAdmin()">Supprimer</a></td>
-    <td><a class="btn btn-success" *ngIf="authService.isAdmin()" [routerLink]="['/update-equipe',equipe.idEquipe]">Modifier</a></td>
+    <td><a class="btn btn-success" *ngIf="authService.isAdmin()" [routerLink]="['/update-game',game.idGame]">Modifier</a></td>
     </tr>
     </tbody>
     

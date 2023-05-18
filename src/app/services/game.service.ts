@@ -1,8 +1,8 @@
 import { AuthService } from './auth.service';
 
 import { Injectable } from '@angular/core';
-import { Equipe } from '../model/equipe.model';
-import { League } from '../model/league.model';
+import { Game } from '../model/game.model';
+import { Genre } from '../model/genre.model';
 import { Image } from '../model/image.model';
 import { Observable } from 'rxjs';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
@@ -12,173 +12,173 @@ const httpOptions = {
 @Injectable({
 providedIn: 'root'
 })
-export class EquipeService {
-  apiURL: string = ' http://localhost:8090/equipes/api';
-  apiURLCat: string = 'http://localhost:8090/equipes/api/leg';
-equipe!: Equipe[]; //un tableau de equipe
-leagues!: League[] ;
+export class GameService {
+  apiURL: string = ' http://localhost:8090/games/api';
+  apiURLCat: string = 'http://localhost:8090/games/api/leg';
+game!: Game[]; //un tableau de game
+genres!: Genre[] ;
 
-equipeRecherche!: Equipe[];
-equipeRecherche2!: Equipe[];
+gameRecherche!: Game[];
+gameRecherche2!: Game[];
 constructor(private http: HttpClient,private authService:AuthService) { }
-  /*this.leagues=[{id:1,legue:"ligue1"},{id:2,legue:"Bundesliga"},{id:3,legue:"Premier League"},{id:4,legue:"Serie A"}];
-this.equipe = [
+  /*this.genres=[{id:1,legue:"ligue1"},{id:2,legue:"Bundesliga"},{id:3,legue:"Premier Genre"},{id:4,legue:"Serie A"}];
+this.game = [
   { id : 1, nom: "juvents", classement:1, datematch
-: new Date("01/14/2011"),league:this.leagues[3]},
+: new Date("01/14/2011"),genre:this.genres[3]},
 { id : 2, nom: "paris saint german", classement:6, datematch
-: new Date("01/14/2011"),league:this.leagues[0]},
+: new Date("01/14/2011"),genre:this.genres[0]},
 { id: 3, nom: "bayern munich", classement: 2, datematch
- : new Date("12/17/2010"),league:this.leagues[1]},
+ : new Date("12/17/2010"),genre:this.genres[1]},
 { id: 4, nom:"Manchester-city", classement: 3, datematch
- : new Date("02/20/2020"),league:this.leagues[2]},
+ : new Date("02/20/2020"),genre:this.genres[2]},
  { id : 5, nom: "Milan", classement:7, datematch
-: new Date("01/14/2011"),league:this.leagues[3]},
+: new Date("01/14/2011"),genre:this.genres[3]},
 { id : 5, nom: "Monaco", classement:5, datematch
-: new Date("01/14/2011"),league:this.leagues[0]},
+: new Date("01/14/2011"),genre:this.genres[0]},
 
   
 ];
 }*/
-listeEquipee():Equipe[] {
-  return this.equipe;
+listeGamee():Game[] {
+  return this.game;
 }
-ajouterequipe( e: Equipe){
-  this.equipe.push(e);
+ajoutergame( e: Game){
+  this.game.push(e);
   }
-  supprimerequipe( prod: Equipe){
-    //supprimer le produit prod du tableau equipe
-    const index = this.equipe.indexOf(prod, 0);
+  supprimergame( prod: Game){
+    //supprimer le produit prod du tableau game
+    const index = this.game.indexOf(prod, 0);
     if (index > -1) {
-    this.equipe.splice(index, 1);
+    this.game.splice(index, 1);
     }
     //ou Bien
-    /* this.equipe.forEach((cur, index) => {
+    /* this.game.forEach((cur, index) => {
     if(prod.idProduit === cur.idProduit) {
-    this.equipe.splice(index, 1);
+    this.game.splice(index, 1);
     }
     }); */
     }
-    equipee!:Equipe;
+    gamee!:Game;
     
 
-updateEquipee(p:Equipe)
+updateGamee(p:Game)
 {
 
-this.supprimerequipe(p);
-this.ajouterequipe(p);
+this.supprimergame(p);
+this.ajoutergame(p);
 }
-listerLeague():League[]{
-  return this.leagues;
+listerGenre():Genre[]{
+  return this.genres;
 
 
 }
 
 
 
- ajouterleague(l:League){
-  this.leagues.push(l);
+ ajoutergenre(l:Genre){
+  this.genres.push(l);
  }
  // api
  
-  ajouterEquipee( equipe: Equipe):Observable<Equipe>{
-    return this.http.post<Equipe>(this.apiURL, equipe, httpOptions);
+  ajouterGamee( game: Game):Observable<Game>{
+    return this.http.post<Game>(this.apiURL, game, httpOptions);
     }
-    supprimerEquipee(id : number) {
+    supprimerGamee(id : number) {
       const url = `${this.apiURL}/${id}`;
       return this.http.delete(url, httpOptions);
       }
-      consulterEquipee(id : number): Observable<Equipe>{
+      consulterGamee(id : number): Observable<Game>{
         const url = `${this.apiURL}/${id}`;
-        return this.http.get<Equipe>(url);
+        return this.http.get<Game>(url);
       }
-      updateEquipeee(equipe :Equipe) : Observable<Equipe>
+      updateGameee(game :Game) : Observable<Game>
 {
-return this.http.put<Equipe>(this.apiURL, equipe, httpOptions);
+return this.http.put<Game>(this.apiURL, game, httpOptions);
 }
 
-listeLeague():Observable<League[]>{
-  return this.http.get<League[]>(this.apiURL+"/leagues");
+listeGenre():Observable<Genre[]>{
+  return this.http.get<Genre[]>(this.apiURL+"/genres");
   }
   
-      consulterLeaguee(id : number): Observable<League>{
+      consulterGenree(id : number): Observable<Genre>{
         const url = `${this.apiURL}/${id}`;
-        return this.http.get<League>(url);
+        return this.http.get<Genre>(url);
       }
-      rechercherParLeaguee(id: number):Observable< Equipe[]> {
+      rechercherParGenree(id: number):Observable< Game[]> {
         const url = `${this.apiURL}/prodscat/${id}`;
-        return this.http.get<Equipe[]>(url);
+        return this.http.get<Game[]>(url);
         }
-        rechercherParNome(nom: string):Observable< Equipe[]> {
-          const url = `${this.apiURL}/equipeByName/${nom}`;
-          return this.http.get<Equipe[]>(url);
+        rechercherParNome(nom: string):Observable< Game[]> {
+          const url = `${this.apiURL}/gameByName/${nom}`;
+          return this.http.get<Game[]>(url);
           }
-          ajouterLeaguee( league: League):Observable<League>{
-            return this.http.post<League>(this.apiURL+"/leagues", league, httpOptions);
+          ajouterGenree( genre: Genre):Observable<Genre>{
+            return this.http.post<Genre>(this.apiURL+"/genres", genre, httpOptions);
            }
           
-           listeEquipe(): Observable<Equipe[]>{
+           listeGame(): Observable<Game[]>{
             let jwt=this.authService.getToken();
             jwt="Bearer "+jwt;
             let headers: HttpHeaders = new HttpHeaders({"Authorization": jwt});
             
-            return this.http.get<Equipe[]>(this.apiURL+"/all", {headers: headers});
+            return this.http.get<Game[]>(this.apiURL+"/all", {headers: headers});
 
           }
-          ListeLeague(): Observable<League[]>{
+          ListeGenre(): Observable<Genre[]>{
             let jwt=this.authService.getToken();
             jwt="Bearer "+jwt;
             let headers: HttpHeaders = new HttpHeaders({"Authorization": jwt});
-            return this.http.get<League[]>(this.apiURLCat, {headers: headers});
+            return this.http.get<Genre[]>(this.apiURLCat, {headers: headers});
             }
 
-          ajouterEquipe( e: Equipe):Observable<Equipe>{
+          ajouterGame( e: Game):Observable<Game>{
             let jwt = this.authService.getToken();
             jwt = "Bearer "+jwt;
             let httpHeaders = new HttpHeaders({"Authorization":jwt})
-            return this.http.post<Equipe>(this.apiURL+"/addequipe", e, {headers:httpHeaders});
+            return this.http.post<Game>(this.apiURL+"/addgame", e, {headers:httpHeaders});
             
            
             
         }
-        supprimerEquipe(id : number) {
-          const url = `${this.apiURL}/deleteequipe/${id}`;
+        supprimerGame(id : number) {
+          const url = `${this.apiURL}/deletegame/${id}`;
           let jwt = this.authService.getToken();
           jwt = "Bearer "+jwt;
           let httpHeaders = new HttpHeaders({"Authorization":jwt})
           return this.http.delete(url, {headers:httpHeaders});
           }
-          consulterEquipe(id: number): Observable<Equipe> {
+          consulterGame(id: number): Observable<Game> {
             const url = `${this.apiURL}/getbyid/${id}`;
             let jwt = this.authService.getToken();
             jwt = "Bearer "+jwt;
             let httpHeaders = new HttpHeaders({"Authorization":jwt})
-            return this.http.get<Equipe>(url,{headers:httpHeaders});
+            return this.http.get<Game>(url,{headers:httpHeaders});
             }
-            updateEquipe(e :Equipe) : Observable<Equipe> {
+            updateGame(e :Game) : Observable<Game> {
               let jwt = this.authService.getToken();
               jwt = "Bearer "+jwt;
               let httpHeaders = new HttpHeaders({"Authorization":jwt})
-              return this.http.put<Equipe>(this.apiURL+"/updateequipe", e, {headers:httpHeaders});
+              return this.http.put<Game>(this.apiURL+"/updategame", e, {headers:httpHeaders});
               }
-              ajouterLeague( e: League):Observable<League>{
+              ajouterGenre( e: Genre):Observable<Genre>{
                 let jwt = this.authService.getToken();
                 jwt = "Bearer "+jwt;
                 let httpHeaders = new HttpHeaders({"Authorization":jwt})
-                return this.http.post<League>(this.apiURL+"/addleg", e, {headers:httpHeaders});
+                return this.http.post<Genre>(this.apiURL+"/addleg", e, {headers:httpHeaders});
                 
                 }
-                rechercherParLeague(idCat: number): Observable<Equipe[]> {
+                rechercherParGenre(idCat: number): Observable<Game[]> {
                   let jwt = this.authService.getToken();
                   jwt = "Bearer "+jwt;
                   let httpHeaders = new HttpHeaders({"Authorization":jwt})
-                  return this.http.get<Equipe[]>(this.apiURL+"/eqlg/"+idCat, {headers:httpHeaders});
+                  return this.http.get<Game[]>(this.apiURL+"/eqlg/"+idCat, {headers:httpHeaders});
                   
                   } 
-                  rechercherParNom(nom: string): Observable<Equipe[]> {
+                  rechercherParNom(nom: string): Observable<Game[]> {
                     let jwt = this.authService.getToken();
                     jwt = "Bearer "+jwt;
                     let httpHeaders = new HttpHeaders({"Authorization":jwt})
-                    return this.http.get<Equipe[]>(this.apiURL+"/equipe/"+nom, {headers:httpHeaders});
+                    return this.http.get<Game[]>(this.apiURL+"/game/"+nom, {headers:httpHeaders});
                   }
                   uploadImage(file: File, filename: string): Observable<Image>{
                     let jwt = this.authService.getToken();

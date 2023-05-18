@@ -1,23 +1,23 @@
 <div class="container">
     
         <div class="col-sm-4 col-md-4 col-lg-4 mb-4">
-            <label>Nom league</label>
-            <input type="text" class="form-control" [(ngModel)]="League.nomLeague" name="nomleague"  >
+            <label>Nom genre</label>
+            <input type="text" class="form-control" [(ngModel)]="Genre.nomGenre" name="nomgenre"  >
             </div>
             <div class="mt-2">
-        <button type="submit" (click)="AjouterLeague()"class="btn btn-success" >Ajouter</button>
+        <button type="submit" (click)="AjouterGenre()"class="btn btn-success" >Ajouter</button>
         </div>
 
     <div class="card shadow mb-4">
     <div class="card-body">
     <table class="table table-striped">
     <thead>
-    <tr> <th>Id</th><th>Nom league</th> </tr>
+    <tr> <th>Id</th><th>Nom genre</th> </tr>
     </thead>
-    <tbody *ngFor="let l of league">
+    <tbody *ngFor="let l of genre">
     <tr>
     <td>{{l.idLeg}}</td>
-    <td>{{l.nomLeague}}</td>
+    <td>{{l.nomGenre}}</td>
     <td><a class="btn btn-success" (click)="updateleg(l)">Editer</a></td>
 
     </tr>

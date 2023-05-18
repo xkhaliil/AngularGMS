@@ -1,0 +1,51 @@
+<div class="container">
+    <div class="text-center">
+        <h2>Ajouter une game :</h2>
+    </div>
+    <form>
+        <div class="row">
+            <div class="col-sm-2 col-md-2 col-lg-2">
+                <div class="form-group">
+                    <label for="gameId">ID du jeu</label>
+                    <input readonly type="text" [(ngModel)]="newGame.idGame" name="id" class="form-control" id="gameId">
+                </div>
+            </div>
+            <div class="col-sm-4 col-md-4 col-lg-4">
+                <div class="form-group">
+                    <label for="gameName">Nom</label>
+                    <input type="text" [(ngModel)]="newGame.nomGame" name="nom" class="form-control" id="gameName">
+                </div>
+            </div>
+            <div class="col-sm-4 col-md-4 col-lg-4">
+                <div class="form-group">
+                    <label for="publishDate">Publish date</label>
+                    <input type="date" [(ngModel)]="newGame.dateFound" name="dateCreation" class="form-control" id="publishDate">
+                </div>
+            </div>
+            <div class="col-sm-4 col-md-4 col-lg-4">
+                <div class="form-group">
+                    <label for="genres">Genres</label>
+                    <select class="form-control form-control-lg" id="genres" name="idCat" [(ngModel)]="newid">
+                        <option *ngFor="let cat of genre" [value]="cat.idLeg">
+                            {{cat.nomGenre}}
+                        </option>
+                    </select>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-12 col-md-12 col-lg-12">
+                <div class="form-group">
+                    <label class="mb-2">Image :</label>
+                    <input type="file" (change)="onImageUpload($event)" name="logo" class="form-control-file" id="gameImage">
+                </div>
+            </div>
+            <div class="col-sm-12 col-md-12 col-lg-12">
+                <img [src]="imagePath" class="img-fluid rounded-start" style="width: 500px; height: 300px">
+            </div>
+        </div>
+        <div class="text-center mt-2">
+            <button type="submit" (click)="addGame()" class="btn btn-success">Ajouter</button>
+        </div>
+    </form>
+</div>

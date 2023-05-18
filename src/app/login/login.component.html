@@ -1,29 +1,109 @@
-<div class="container mt-5">
-    <div class="row justify-content-md-center">
-        <div class="row justify-content-md-center">
-           
-            <div class="alert alert-danger" *ngIf="err==1">
-            <strong>login ou mot de passe erronés..</strong>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>Login Page</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
+    <style>
+        body {
+            background-color: #f7f7f7;
+            font-family: Arial, sans-serif;
+        }
+
+        .container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        .card {
+            width: 400px;
+            padding: 2rem;
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        .card-title {
+            font-size: 24px;
+            font-weight: bold;
+            margin-bottom: 1rem;
+            text-align: center;
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .form-group label {
+            font-size: 14px;
+            font-weight: bold;
+            color: #333;
+        }
+
+        .form-group input {
+            width: 100%;
+            padding: 0.5rem;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            font-size: 14px;
+        }
+
+        .form-group input:focus {
+            outline: none;
+            border-color: #6c63ff;
+        }
+
+        .btn {
+            width: 100%;
+            padding: 0.75rem;
+            background-color: #6c63ff;
+            color: #fff;
+            border: none;
+            border-radius: 4px;
+            font-size: 14px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        .btn:hover {
+            background-color: #534ecc;
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <div class="card animate__animated animate__fadeIn">
+        <div class="alert alert-danger alert-dismissible fade show animate__animated animate__fadeIn" role="alert"
+             *ngIf="err==1">
+            <strong>Login ou mot de passe erronés..</strong>
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+
+        <h2 class="card-title">Login</h2>
+
+        <form>
+            <div class="form-group">
+                <label>Nom Utilisateur :</label>
+                <input type="text" name="username"
+                       class="form-control"
+                       [(ngModel)]="user.username">
             </div>
-            
-    
-    <form >
-    <div class="form-group">
-    <label >Nom Utilisateur :</label>
-    <input type="text" name="username"
-    class="form-control"
-    [(ngModel)]="user.username" >
+            <div class="form-group">
+                <label>Mot de passe:</label>
+                <input type="password" name="password"
+                       [(ngModel)]="user.password" class="form-control">
+            </div>
+            <button type="button" (click)="onLoggedin()"
+                    class="btn btn-success">Connexion
+            </button>
+        </form>
     </div>
-    <div class="form-group">
-    <label >Mot de passe :</label>
-    <input type="password" name="password"
-    [(ngModel)]="user.password" class="form-control">
-    </div>
-    <div class="row justify-content-md-center">
-    <button type="button" (click)="onLoggedin()"
-    class="btn btn-success">Connexion</button>
-    </div>
-    </form>
-    </div>
-    </div>
-    </div>
+</div>
+</body>
+
+</html>

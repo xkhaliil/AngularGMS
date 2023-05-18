@@ -1,0 +1,35 @@
+<div class="container">
+    <div class="card shadow mb-4 animate__animated animate__fadeIn">
+        <div class="card-body">
+            <div class="table-responsive">
+                <table class="table table-bordered table-striped">
+                    <thead class="thead-dark">
+                    <tr>
+                        <th scope="col">Id</th>
+                        <th scope="col">Nom</th>
+                        <th scope="col">Publish date</th>
+                        <th scope="col">Genre</th>
+                        <th scope="col">Image</th>
+                        <th scope="col">Action</th>
+                    </tr>
+                    </thead>
+                    <tbody *ngFor="let game of game">
+                    <tr>
+                        <td>{{game.idGame}}</td>
+                        <td>{{game.nomGame}}</td>
+                        <td>{{game.dateFound | date:'dd/MM/yyyy'}}</td>
+                        <td>{{game.genre.nomGenre}}</td>
+                        <td>
+                            <img class="card-img-top img-fluid rounded" src="{{game.imageStr}}" style="height: 100px; width: 150px;" alt="Game Image">
+                        </td>
+                        <td>
+                            <a class="btn btn-danger btn-sm rounded-pill" *ngIf="authService.isAdmin()" (click)="supprimergame(game)">Supprimer</a>
+                            <a class="btn btn-success btn-sm rounded-pill" *ngIf="authService.isAdmin()" [routerLink]="['/update-game', game.idGame]">Modifier</a>
+                        </td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>

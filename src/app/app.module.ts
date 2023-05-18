@@ -3,31 +3,29 @@ import { BrowserModule } from '@angular/platform-browser';
 import { FormsModule } from '@angular/forms';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { EquipeComponent } from './equipe/equipe.component';
-import { AddEquipeComponent } from './add-equipe/add-equipe.component';
-import { UpdateProduitComponent } from './update-produit/update-produit.component';
-import { UpdateEquipeComponent } from './update-equipe/update-equipe.component';
+import { GameComponent } from './game/game.component';
+import { AddGameComponent } from './add-game/add-game.component';
+import { UpdateGameComponent } from './update-game/update-game.component';
 import { LoginComponent } from './login/login.component';
 import { ForbiddenComponent } from './forbidden/forbidden.component';
-import { RechercheParCategorieComponent } from './recherche-par-categorie/recherche-par-categorie.component';
+import { RechercheParGenreComponent } from './recherche-par-genre/recherche-par-genre.component';
 import { NomrechercherComponent } from './nomrechercher/nomrechercher.component';
-import { ListeLeagueComponent } from './liste-league/liste-league.component';
-import { UpdateLeagueComponent } from './update-league/update-league.component';
+import { ListeGenreComponent } from './liste-genre/liste-genre.component';
+import { UpdateGenreComponent } from './update-genre/update-genre.component';
 import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
     AppComponent,
-    EquipeComponent,
-    AddEquipeComponent,
-    UpdateProduitComponent,
-    UpdateEquipeComponent,
+    GameComponent,
+    AddGameComponent,
+    UpdateGameComponent,
     LoginComponent,
     ForbiddenComponent,
-    RechercheParCategorieComponent,
+    RechercheParGenreComponent,
     NomrechercherComponent,
-    ListeLeagueComponent,
-    UpdateLeagueComponent
+    ListeGenreComponent,
+    UpdateGenreComponent
   ],
   imports: [
     BrowserModule,
