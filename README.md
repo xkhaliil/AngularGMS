@@ -1,27 +1,41 @@
-# Game
+# AngularGMS
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 13.3.9.
+Angular single-page app for managing a video game catalog, with login-guarded routes for adding, updating, and searching games by name or genre.
 
-## Development server
+![TypeScript](https://img.shields.io/badge/language-TypeScript-blue)
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
+## What it does
 
-## Code scaffolding
+AngularGMS provides components to list, add, and update games (`game`, `add-game`, `update-game`), search games by name or genre (`nomrechercher`, `recherche-par-genre`, `liste-genre`, `update-genre`), and a login flow (`login`) whose routes are protected by an Angular route guard (`game.guard.ts`), with a `forbidden` component shown on unauthorized access. Authentication is handled with JWT via `@auth0/angular-jwt`. The UI is styled with Bootstrap, and SweetAlert2 is used for alert/confirmation dialogs.
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+<!-- TODO: describe what data a "game" and "genre" record contains, and which backend API the app calls -->
 
-## Build
+## Tech stack
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
+- [Angular](https://angular.io/) 13 (`@angular/core`, `@angular/router`, `@angular/forms`, `@angular/common/http`)
+- `@auth0/angular-jwt` for JWT-based authentication
+- Bootstrap for styling
+- SweetAlert2 for alert dialogs
+- RxJS
+- Karma + Jasmine for unit tests
 
-## Running unit tests
+## Getting started
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+```bash
+npm install
+npm start      # ng serve, then open http://localhost:4200/
+```
 
-## Running end-to-end tests
+Other available scripts (from `package.json`):
 
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
+```bash
+npm run build   # ng build, output to dist/
+npm run watch   # ng build --watch --configuration development
+npm test        # ng test, runs unit tests via Karma
+```
 
-## Further help
+<!-- TODO: add a screenshot -->
 
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+## License
+
+No license file is present in this repository.
